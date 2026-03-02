@@ -876,7 +876,7 @@ export const BoldItalic: Zeyah.FC<PropsWithInfo> = ({ getChildrenString }) => {
     <>
       <Platform type="discord">***{getChildrenString()}***</Platform>
       <Platform type="facebook">
-        <UniFont type="bold_italic"></UniFont>
+        <UniFont type="bold_italic">{getChildrenString()}</UniFont>
       </Platform>
     </>
   );
