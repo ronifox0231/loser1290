@@ -7,7 +7,7 @@ import yts from "yt-search";
 export const YTH = module.register({
   emoji: "🎧",
   name: "music",
-  version: "1.0.0",
+  version: "1.0.1",
   author: ["@lianecagara", "@Jonell-Magallanes"],
   pluginNames: [],
   description: "Play and Download Youtube Music",
@@ -27,12 +27,17 @@ export const YTH = module.register({
     if (!query) {
       return zeyahIO.reply(<>❌ Please provide a song name to search.</>);
     }
+    const p = await zeyahIO.reply(<>Processing....</>);
+
     const search = await yts(query);
-    if (!search.videos.length) return zeyahIO.reply(<>❌ No results found.</>);
+    if (!search.videos.length) {
+      await zeyahIO.reply(<>❌ No results found.</>);
+      await zeyahIO.unsend(p);
+      return;
+    }
 
     const video: yts.VideoSearchResult = search.videos.at(0);
     const url = video.url;
-    const p = await zeyahIO.reply(<>Processing....</>);
 
     const apiUrl = `https://ccproject.serv00.net/ytdl2.php`;
     const res = await axios.get<{ download: string }>(apiUrl, {
@@ -62,7 +67,7 @@ export const YTH = module.register({
 
     musicMessage.listenReplies({ timeout: 5 * 1000 });
     musicMessage.on("reply", async (zeyahIO, event) => {
-      const { threadID, body, senderID } = event;
+      const { body, senderID } = event;
 
       if (senderID !== author) return;
 
@@ -71,7 +76,6 @@ export const YTH = module.register({
       if (message === "dl" || message === "download") {
         const downloadMessage = await zeyahIO.reply(
           <>body:📥 Download URL:\n${download}</>,
-          threadID,
         );
 
         setTimeout(async () => {
