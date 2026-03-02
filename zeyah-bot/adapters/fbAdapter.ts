@@ -190,9 +190,10 @@ export class Ws3FBAdapter extends ZeyahAdapter {
     threadID: ZeyahMessageEvent["threadID"],
   ): Promise<void> {
     try {
+      console.log({ messageID });
       await this.internalAPI.unsendMessage(messageID);
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   }
 

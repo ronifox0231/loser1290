@@ -1,6 +1,6 @@
 import { getStreamFromUrlFull } from "@zeyah-bot/utils";
 
-export const CouldRead = module.register({
+export const Posaa = module.register({
   emoji: "🙀",
   name: "cat",
   version: "1.0.0",
