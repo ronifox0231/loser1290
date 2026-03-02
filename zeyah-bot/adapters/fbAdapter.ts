@@ -201,7 +201,7 @@ export class Ws3FBAdapter extends ZeyahAdapter {
             form.replyTo,
             (err, info) => {
               console.log("dispfb");
-              console.log({ info });
+              // console.log({ info });
               if (err) {
                 return dispatched.__resolveResponse(null, err);
               }
@@ -229,7 +229,7 @@ export class Ws3FBAdapter extends ZeyahAdapter {
     threadID: ZeyahMessageEvent["threadID"],
   ): Promise<void> {
     try {
-      console.log({ messageID });
+      // console.log({ messageID });
       await this.internalAPI.unsendMessage(messageID);
     } catch (error) {
       console.error(error);
