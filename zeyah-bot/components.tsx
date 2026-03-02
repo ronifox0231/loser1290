@@ -196,6 +196,7 @@ import {
 } from "@zeyah-bot/types";
 import Decimal from "decimal.js";
 import { getConfig } from "@zeyah-bot/registry";
+import { inspect, InspectOptions } from "node:util";
 
 export const DiscordStateKey = "discordEmbeds";
 
@@ -953,4 +954,20 @@ export const AstralHelpOption: Zeyah.FC<
       <WhateverThisWas1 /> <Text>{description}</Text>
     </>
   );
+};
+
+export const Inspect: Zeyah.FC<
+  PropsWithInfo<InspectOptions & { object: any }>
+> = ({
+  getChildrenString,
+  childrenData,
+  platform,
+  rootFiber,
+  selfData,
+  children,
+  childrenString,
+  object,
+  ...options
+}) => {
+  return inspect(object, options);
 };

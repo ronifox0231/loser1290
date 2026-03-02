@@ -4,12 +4,13 @@ import { inspect } from "node:util";
 import * as Registry from "@zeyah-bot/registry";
 import * as utils from "@zeyah-bot/utils";
 import * as Comps from "@zeyah-bot/components";
+import { Inspect } from "@zeyah-bot/components";
 
 export const Eval = module.register({
   emoji: "🤣",
   name: "eval",
   role: 2,
-  version: "1.0.1",
+  version: "1.0.2",
   author: ["@lianecagara"],
   pluginNames: [],
   description: "Evaluate a Typescript Code.",
@@ -31,6 +32,7 @@ export const Eval = module.register({
           Registry,
           utils,
           Comps,
+          Inspect,
         },
         true,
       );
