@@ -19,17 +19,11 @@ export const Catfact = module.register({
     );
   },
   async onCommand({ zeyahIO }) {
-    const searching = await zeyahIO.reply(<>🔎 Processing...</>);
-
     const {
       message: { fact },
     } = await getContent<{ message: { fact: string } }>(
       "https://api.popcat.xyz/v2/fact",
     );
-
-    await zeyahIO.unsend(searching);
-
-    const searching2 = await zeyahIO.reply(<>🔎 Processing (2)...</>);
 
     const {
       message: { text: catVer },
@@ -39,8 +33,6 @@ export const Catfact = module.register({
         text: fact,
       },
     );
-
-    await zeyahIO.unsend(searching2);
 
     await zeyahIO.reply(<>{catVer}</>);
   },
