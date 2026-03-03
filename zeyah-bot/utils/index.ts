@@ -987,3 +987,206 @@ export {
   getFBInfo,
 } from "./unsafes";
 export * from "./inventory";
+
+export type TypeMap = {
+  string: string;
+  number: number;
+  boolean: boolean;
+  function: Function;
+  null: null;
+  object: object;
+  undefined: undefined;
+
+  falsy: false | 0 | "" | null | undefined | 0n;
+
+  "non-falsy": string | number | boolean | symbol | bigint | object | Function;
+
+  primitive: string | number | boolean | symbol | bigint | null | undefined;
+
+  "non-primitive": object | Function;
+
+  array: any[];
+
+  "array-with-items": [any, ...any[]];
+
+  "object-with-properties": Record<string, any>;
+
+  "number-not-nan": number;
+
+  nan: number;
+
+  "finite-number": number;
+
+  "empty-string": "";
+
+  "non-empty-string": string;
+
+  "plain-object": Record<string | symbol | number, any>;
+
+  integer: number;
+};
+
+export type TypeDescriptor = keyof TypeMap | (new (...args: any[]) => any);
+
+type ResolveType<D> = D extends keyof TypeMap
+  ? TypeMap[D]
+  : D extends abstract new (...args: any[]) => infer R
+    ? InstanceType<D>
+    : never;
+
+export function isType<D extends TypeDescriptor>(
+  value: any,
+  descriptor: D,
+): value is ResolveType<D> {
+  if (typeof descriptor === "function") {
+    return value instanceof descriptor;
+  }
+
+  switch (descriptor) {
+    case "string":
+      return typeof value === "string";
+
+    case "number":
+      return typeof value === "number";
+
+    case "boolean":
+      return typeof value === "boolean";
+
+    case "function":
+      return typeof value === "function";
+
+    case "null":
+      return value === null;
+
+    case "object":
+      return value !== null && typeof value === "object";
+
+    case "undefined":
+      return value === undefined;
+
+    case "falsy":
+      return !value;
+
+    case "non-falsy":
+      return !!value;
+
+    case "primitive":
+      return (
+        value === null ||
+        (typeof value !== "object" && typeof value !== "function")
+      );
+
+    case "non-primitive":
+      return (
+        value !== null &&
+        (typeof value === "object" || typeof value === "function")
+      );
+
+    case "array":
+      return Array.isArray(value);
+
+    case "array-with-items":
+      return Array.isArray(value) && value.length > 0;
+
+    case "object-with-properties":
+      return (
+        value !== null &&
+        typeof value === "object" &&
+        Object.keys(value).length > 0
+      );
+
+    case "number-not-nan":
+      return typeof value === "number" && !Number.isNaN(value);
+
+    case "nan":
+      return typeof value === "number" && Number.isNaN(value);
+
+    case "finite-number":
+      return typeof value === "number" && Number.isFinite(value);
+
+    case "empty-string":
+      return value === "";
+
+    case "non-empty-string":
+      return typeof value === "string" && value.length > 0;
+
+    case "plain-object":
+      return Object.getPrototypeOf(value) === Object.prototype;
+
+    case "integer":
+      return Number.isInteger(value);
+
+    default:
+      return false;
+  }
+}
+
+export function getType(value: any): TypeDescriptor | "unknown" {
+  const descriptors: TypeDescriptor[] = [
+    "string",
+    "number",
+    "boolean",
+    "function",
+    "null",
+    "object",
+    "undefined",
+    "falsy",
+    "non-falsy",
+    "primitive",
+    "non-primitive",
+    "array",
+    "array-with-items",
+    "object-with-properties",
+    "number-not-nan",
+    "nan",
+    "finite-number",
+    "empty-string",
+    "non-empty-string",
+    "plain-object",
+    "integer",
+  ];
+
+  for (const d of descriptors) {
+    if (isType(value, d)) return d;
+  }
+
+  return "unknown";
+}
+
+export function isTypes<D extends TypeDescriptor>(
+  value: any,
+  ...descriptors: D[]
+): value is ResolveType<D> {
+  return descriptors.some((i) => isType(value, i));
+}
+
+export function typeCannot(value: any, ...descriptors: TypeDescriptor[]) {
+  if (!isTypes(value, ...descriptors)) return;
+
+  const expected = descriptors.join(" | ");
+  const received = getType(value);
+
+  throw new TypeError(
+    `Value cannot be of type ${expected}. Received ${received}.`,
+  );
+}
+
+export function typeMustBe(value: any, ...descriptors: TypeDescriptor[]) {
+  if (isTypes(value, ...descriptors)) return;
+
+  const expected = descriptors.join(" | ");
+  const received = getType(value);
+
+  throw new TypeError(
+    `Value must be of type ${expected}. Received ${received}.`,
+  );
+}
+
+export function typeMustBeOptional(
+  value: any,
+  ...descriptors: TypeDescriptor[]
+) {
+  if (value === undefined) return;
+
+  typeMustBe(value, ...descriptors);
+}

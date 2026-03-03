@@ -96,6 +96,7 @@ export function register<T extends ValidPluginNames>(
   cmd: ZeyahCMD<T>,
   mode: RegisterMode = "strict",
 ): void {
+  typeMustBe(cmd, "object");
   if (!RegisterMode.includes(mode)) {
     throw new Error(
       `Invalid RegisterMode. Expected ${RegisterMode.join(", ")}`,
@@ -105,13 +106,18 @@ export function register<T extends ValidPluginNames>(
   const normalAuthor = (
     Array.isArray(cmd.author) ? [...cmd.author] : [cmd.author]
   ).filter(Boolean);
+  typeMustBe(normalAuthor, "string", "array-with-items");
   if (normalAuthor.length === 0) {
     throw new Error("Command must have at least one author.");
   }
   cmd.pluginNames ??= [] as unknown as readonly [...T];
+  typeMustBe(cmd.name, "non-empty-string");
+  typeMustBe(cmd.pluginNames, "array");
+
   if (!cmd.name) {
     throw new Error("Command must have a name");
   }
+  typeMustBe(cmd.version, "string");
   if (!cmd.version || !SemanticVersion.isValid(cmd.version)) {
     throw new Error(
       "The version is either missing or does not satisfy the format of 'number.number.number' or semantic versioning. Example: '1.0.2'",
@@ -128,9 +134,12 @@ export function register<T extends ValidPluginNames>(
     );
   }
 
+  typeMustBe(cmd.emoji, "string");
+
   if (!cmd.emoji) {
     throw new Error("The emoji property is required.");
   }
+  typeMustBeOptional(cmd.argGuide, "array");
   if (
     cmd.argGuide &&
     (!Array.isArray(cmd.argGuide) ||
@@ -140,6 +149,9 @@ export function register<T extends ValidPluginNames>(
       "Some argument guide in the command is malformed, each arg guide could start and end with <, > or [, ] respectively.",
     );
   }
+  typeMustBeOptional(cmd.onCommand, "object", "function");
+  typeMustBeOptional(cmd.onEvent, "object", "function");
+  typeMustBeOptional(cmd.onMessage, "object", "function");
 
   if (!cmd.onCommand && !cmd.onEvent && !cmd.onMessage) {
     throw new Error(`Command "${cmd.name}" has no handlers`);
@@ -268,6 +280,12 @@ import { API } from "ws3-fca";
 import { MiraiModule } from "@zeyah-bot/legacy/catch-mirai";
 import { Client } from "discord.js";
 import axios from "axios";
+import {
+  isTypes,
+  typeCannot,
+  typeMustBe,
+  typeMustBeOptional,
+} from "@zeyah-bot/utils";
 
 export function getStaticRole(id: string): CMDRole {
   if (config.moderatorBot.includes(id)) {
