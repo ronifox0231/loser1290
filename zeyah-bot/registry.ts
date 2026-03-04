@@ -16,8 +16,25 @@
  */
 
 import * as LoggerThemes from "@zeyah-utils/logger-themes";
+import {
+  isTypes,
+  typeCannot,
+  typeMustBe,
+  typeMustBeOptional,
+} from "@zeyah-bot/utils";
 
 export function defineConfig(config: ZeyahConfig): ZeyahConfig {
+  typeMustBe(config, "object-with-properties");
+  typeMustBe(config.DESIGN, "object-with-properties");
+  typeMustBe(config.adminBot, "array");
+  typeMustBe(config.prefixes, "array-with-items");
+  typeMustBe(config.plugins, "array");
+  typeMustBe(config.pluginConfig, "object");
+  typeMustBe(config.moderatorBot, "array");
+  typeMustBeOptional(config.discordToken, "string");
+  typeMustBeOptional(config.useDiscord, "boolean");
+  typeMustBeOptional(config.useFacebook, "boolean");
+  typeMustBe(config.lang, "string");
   if (
     !config.DESIGN ||
     !config.adminBot ||
@@ -280,12 +297,6 @@ import { API } from "ws3-fca";
 import { MiraiModule } from "@zeyah-bot/legacy/catch-mirai";
 import { Client } from "discord.js";
 import axios from "axios";
-import {
-  isTypes,
-  typeCannot,
-  typeMustBe,
-  typeMustBeOptional,
-} from "@zeyah-bot/utils";
 
 export function getStaticRole(id: string): CMDRole {
   if (config.moderatorBot.includes(id)) {
