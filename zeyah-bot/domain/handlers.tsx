@@ -25,7 +25,7 @@ import {
   Plugins,
   SemanticVersion,
 } from "@zeyah-bot/registry";
-import {
+import type {
   PluginContract,
   ZeyahBaseCTX,
   ZeyahCMD,
@@ -40,7 +40,6 @@ import {
 import { parseArgsOld, parseArgTokens } from "@zeyah-bot/domain/utils";
 import { ZeyahIO } from "@zeyah-bot/domain/io";
 import { ZeyahAdapter } from "@zeyah-bot/adapters/base";
-const config = getConfig();
 import { logger } from "@zeyah-utils/logger";
 import { inspect } from "node:util";
 import { Bold, Italic, List, ListItem } from "@kayelaa/zeyah";
@@ -111,6 +110,7 @@ export async function handleCommand(
   event: ZeyahMessageOrReply,
   adapter: ZeyahAdapter,
 ) {
+  const config = getConfig();
   event.body ??= "";
   const message = `${event.body}`;
   let [commandName] = message.split(/\s+/);

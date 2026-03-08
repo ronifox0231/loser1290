@@ -17,8 +17,8 @@
 
 import path from "path";
 import url from "url";
-import fs from "fs";
 import Module, { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 export interface ZeyahImportMetaBase {}
 
@@ -73,16 +73,18 @@ export class ZeyahImportMeta implements ImportMeta, ZeyahImportMetaBase {
   }
 }
 
-Object.defineProperty(Module.prototype, "meta", {
-  configurable: false,
-  enumerable: false,
-  get(this: Module) {
-    if (!Reflect.has(this, "__zeyahMeta")) {
-      Reflect.set(this, "__zeyahMeta", new ZeyahImportMeta(this));
-    }
-    return Reflect.get(this, "__zeyahMeta") as ZeyahImportMeta;
-  },
-});
+if (1) {
+  Object.defineProperty(Module.prototype, "meta", {
+    configurable: false,
+    enumerable: false,
+    get(this: Module) {
+      if (!Reflect.has(this, "__zeyahMeta")) {
+        Reflect.set(this, "__zeyahMeta", new ZeyahImportMeta(this));
+      }
+      return Reflect.get(this, "__zeyahMeta") as ZeyahImportMeta;
+    },
+  });
+}
 
 export class ZeyahModuleHub {
   module: Module;
@@ -134,27 +136,29 @@ export class ZeyahModuleHub {
 
 import * as registry from "@zeyah-bot/registry";
 
-Object.defineProperty(Module.prototype, "hub", {
-  configurable: false,
-  enumerable: false,
-  get(this: Module) {
-    if (!Reflect.has(this, "__zeyahHub")) {
-      Reflect.set(this, "__zeyahHub", new ZeyahModuleHub(this));
-    }
-    return Reflect.get(this, "__zeyahHub") as ZeyahModuleHub;
-  },
-});
-Object.defineProperty(Module.prototype, "register", {
-  configurable: false,
-  enumerable: false,
-  get(this: Module) {
-    return registry.register;
-  },
-});
-Object.defineProperty(Module.prototype, "registry", {
-  configurable: false,
-  enumerable: false,
-  get(this: Module) {
-    return registry;
-  },
-});
+if (1) {
+  Object.defineProperty(Module.prototype, "hub", {
+    configurable: false,
+    enumerable: false,
+    get(this: Module) {
+      if (!Reflect.has(this, "__zeyahHub")) {
+        Reflect.set(this, "__zeyahHub", new ZeyahModuleHub(this));
+      }
+      return Reflect.get(this, "__zeyahHub") as ZeyahModuleHub;
+    },
+  });
+  Object.defineProperty(Module.prototype, "register", {
+    configurable: false,
+    enumerable: false,
+    get(this: Module) {
+      return registry.register;
+    },
+  });
+  Object.defineProperty(Module.prototype, "registry", {
+    configurable: false,
+    enumerable: false,
+    get(this: Module) {
+      return registry;
+    },
+  });
+}

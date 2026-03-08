@@ -15,7 +15,7 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import "@zeyah-bot/domain/module";
+import "@zeyah-bot/legacy/module";
 import "dotenv/config";
 import { setup } from "@zeyah-bot/adapterSetup";
 import {

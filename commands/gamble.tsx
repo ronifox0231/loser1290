@@ -2,7 +2,7 @@ import { Bold, Code, Italic } from "@kayelaa/zeyah";
 import { Points } from "@zeyah-bot/components";
 import { ZeyahIO } from "@zeyah-bot/domain/io";
 import { biasedRandom, randomInt } from "@zeyah-utils";
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 
 export const GambleEvent = module.register({
   emoji: "🎮",

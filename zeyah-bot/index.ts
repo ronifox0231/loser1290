@@ -1,5 +1,8 @@
 import { ChildProcess, spawn } from "child_process";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+import { createRequire } from "node:module";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const entry = resolve(__dirname, "main.ts");
 const RESTART_CODE = 69;
@@ -7,9 +10,13 @@ const RESTART_CODE = 69;
 let child: ChildProcess;
 
 function start() {
-  child = spawn(process.execPath, ["--import", "tsx", entry], {
-    stdio: "inherit",
-  });
+  child = spawn(
+    process.execPath,
+    ["--import", "tsx", "--import", `./zeyah-bot/importer-1.mjs`, entry],
+    {
+      stdio: "inherit",
+    },
+  );
 
   child.on("exit", (code, signal) => {
     if (signal) {

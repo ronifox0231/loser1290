@@ -34,8 +34,8 @@ declare namespace NodeJS {
      */
     exports: any;
     mirai: import("@zeyah-bot/legacy/catch-mirai").MiraiModule;
-    meta: import("@zeyah-bot/domain/module").ZeyahImportMeta;
-    hub: import("@zeyah-bot/domain/module").ZeyahModuleHub;
+    meta: import("@zeyah-bot/legacy/module").ZeyahImportMeta;
+    hub: import("@zeyah-bot/legacy/module").ZeyahModuleHub;
     register: typeof import("@zeyah-bot/registry").register;
     registry: typeof import("@zeyah-bot/registry");
     exportAsMirai(): void;

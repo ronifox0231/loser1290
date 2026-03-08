@@ -15,7 +15,7 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import axios, { Axios, AxiosRequestConfig } from "axios";
+import axios, { Axios, type AxiosRequestConfig } from "axios";
 
 /**
  * **convertHMS()** converts a number of seconds into a **HH:MM:SS** formatted string.

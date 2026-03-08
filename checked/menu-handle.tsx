@@ -1,6 +1,6 @@
-import { AnyZeyahElement, Code } from "@kayelaa/zeyah";
+import { type AnyZeyahElement, Code } from "@kayelaa/zeyah";
 import { definePlugin } from "@zeyah-bot/registry";
-import { ZeyahCMD, ZeyahCMDCTX, ZeyahEventCTX } from "@zeyah-bot/types";
+import type { ZeyahCMD, ZeyahCMDCTX, ZeyahEventCTX } from "@zeyah-bot/types";
 
 export const menuHandlePlugin = definePlugin(async () => ({
   pluginName: "menu-handle",

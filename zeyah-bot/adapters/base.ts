@@ -16,7 +16,7 @@
  */
 
 import { ZeyahIO } from "@zeyah-bot/domain/io";
-import {
+import type {
   ZeyahBaseEvent,
   ZeyahDispatchAttachment,
   ZeyahInferredEvent,
@@ -26,12 +26,8 @@ import {
 } from "@zeyah-bot/types";
 import Stream from "node:stream";
 import Emitter from "node:events";
-import {
-  AnyZeyahElement,
-  PlatformType,
-  ZeyahElement,
-  ZeyahNode,
-} from "@kayelaa/zeyah";
+import type { AnyZeyahElement, PlatformType, ZeyahNode } from "@kayelaa/zeyah";
+import { ZeyahElement } from "@kayelaa/zeyah";
 import { ReadStream } from "node:fs";
 import { handleCommand, handleEvent } from "@zeyah-bot/domain/handlers";
 import { logger } from "@zeyah-utils/logger";

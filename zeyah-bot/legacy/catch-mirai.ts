@@ -15,20 +15,20 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import { PlatformType } from "@kayelaa/zeyah";
+import { type PlatformType } from "@kayelaa/zeyah";
 import { ZeyahIO } from "@zeyah-bot/domain/io";
 import {
   AdapterRegistry,
   getConfig,
   SemanticVersion,
 } from "@zeyah-bot/registry";
-import {
-  CMDRole,
+import type {
   LanguageType,
   ZeyahCMD,
   ZeyahCMDCTX,
   ZeyahMessageOrReply,
 } from "@zeyah-bot/types";
+import { CMDRole } from "@zeyah-bot/types";
 import { Never } from "@zeyah-utils";
 import Module from "node:module";
 
@@ -116,29 +116,31 @@ export namespace MiraiModule {
   export const moduleMiraiMap = new Map<string, MiraiModule>();
 }
 
-Object.defineProperty(Module.Module.prototype, "mirai", {
-  set(this: NodeJS.Module, value: MiraiModule) {
-    const key = `${this.meta.dirname}`;
-    MiraiModule.moduleMiraiMap.set(key, value);
-  },
-  get(this: NodeJS.Module) {
-    const key = `${this.meta.dirname}`;
+if (1) {
+  Object.defineProperty(Module.Module.prototype, "mirai", {
+    set(this: NodeJS.Module, value: MiraiModule) {
+      const key = `${this.meta.dirname}`;
+      MiraiModule.moduleMiraiMap.set(key, value);
+    },
+    get(this: NodeJS.Module) {
+      const key = `${this.meta.dirname}`;
 
-    let mirai = MiraiModule.moduleMiraiMap.get(key);
-    if (!mirai) {
-      mirai = { config: { name: "" }, run() {} };
-      MiraiModule.moduleMiraiMap.set(key, mirai);
-    }
-    return mirai;
-  },
-  configurable: true,
-});
-Object.defineProperty(Module.Module.prototype, "exportAsMirai", {
-  get(this: NodeJS.Module) {
-    return () => {
-      this.mirai = this.exports;
-      this.exports.__esModule = true;
-    };
-  },
-  configurable: true,
-});
+      let mirai = MiraiModule.moduleMiraiMap.get(key);
+      if (!mirai) {
+        mirai = { config: { name: "" }, run() {} };
+        MiraiModule.moduleMiraiMap.set(key, mirai);
+      }
+      return mirai;
+    },
+    configurable: true,
+  });
+  Object.defineProperty(Module.Module.prototype, "exportAsMirai", {
+    get(this: NodeJS.Module) {
+      return () => {
+        this.mirai = this.exports;
+        this.exports.__esModule = true;
+      };
+    },
+    configurable: true,
+  });
+}

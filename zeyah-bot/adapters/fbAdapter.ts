@@ -19,22 +19,21 @@ import { createElement, ZeyahElement } from "@kayelaa/zeyah";
 import { ZeyahAdapter } from "@zeyah-bot/adapters/base";
 import { ZeyahIO } from "@zeyah-bot/domain/io";
 import { AdapterRegistry } from "@zeyah-bot/registry";
-import {
+import type {
   ZeyahInferredEvent,
   ZeyahMessageEvent,
   ZeyahMessageOrReply,
 } from "@zeyah-bot/types";
 import { isEqual } from "@zeyah-bot/utils";
 import { ReadStream } from "node:fs";
-import {
+import type {
   API,
   ListenEvent,
-  login,
   LoginCredentials,
   LoginOptions,
-  Message,
   MessageObject,
 } from "ws3-fca";
+import { login } from "ws3-fca";
 export class Ws3FBAdapter extends ZeyahAdapter {
   repliesMap: Map<string, Ws3FBDispatched>;
   constructor(api: API) {

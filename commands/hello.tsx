@@ -9,7 +9,7 @@ import {
   JSONStr,
 } from "@zeyah-bot/components";
 import { clamp, random56Bit, randomArrayValue, randomInt } from "@zeyah-utils";
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 
 function testRandom(fn: () => number, n = 100000) {
   let sum = 0;

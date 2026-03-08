@@ -1,4 +1,4 @@
-import Zeyah, { Bold, Italic, PropsWithInfo, ZeyahJSX } from "@kayelaa/zeyah";
+import Zeyah, { Bold, Italic, type PropsWithInfo, ZeyahJSX } from "@kayelaa/zeyah";
 import { Menu } from "@zeyah-bot/menu";
 import { UserDB, usersDB } from "@zeyah-bot/database";
 import {
@@ -9,8 +9,9 @@ import {
   Random,
   ResIDontKnow,
 } from "@zeyah-bot/components";
-import Decimal from "decimal.js";
-import { ZeyahCMDCTX } from "@zeyah-bot/types";
+import { Decimal } from "decimal.js";
+
+import type { ZeyahCMDCTX } from "@zeyah-bot/types";
 import { parseBetDecimal } from "@zeyah-utils";
 
 export const CredixMenu = new Menu();

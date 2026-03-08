@@ -15,9 +15,9 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import Zeyah, { PropsWithInfo, ZeyahElement } from "@kayelaa/zeyah";
-import { AnyZeyahAdapterClass, ZeyahAdapter } from "@zeyah-bot/adapters/base";
-import {
+import Zeyah, { type PropsWithInfo, ZeyahElement } from "@kayelaa/zeyah";
+import { type AnyZeyahAdapterClass, ZeyahAdapter } from "@zeyah-bot/adapters/base";
+import type {
   ZeyahEventOf,
   ZeyahEventType,
   ZeyahInferredEvent,

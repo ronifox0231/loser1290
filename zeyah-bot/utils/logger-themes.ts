@@ -15,8 +15,8 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import chalk, { Chalk } from "chalk";
-import gradient, { Gradient } from "gradient-string";
+import chalk, { type Chalk } from "chalk";
+import gradient, { type Gradient } from "gradient-string";
 
 export type ThemeName = keyof typeof ThemeMap;
 

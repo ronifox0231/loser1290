@@ -15,13 +15,13 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import { MessageZeyahIO, ZeyahIO } from "@zeyah-bot/domain/io";
+import { type MessageZeyahIO, ZeyahIO } from "@zeyah-bot/domain/io";
 import type { register } from "@zeyah-bot/registry";
 import { UserDB, UsersDB } from "@zeyah-bot/database";
-import { ThemeName } from "@zeyah-utils/logger-themes";
+import { type ThemeName } from "@zeyah-utils/logger-themes";
 import Stream, { Readable } from "node:stream";
-import { BufferResolvable } from "discord.js";
-import Zeyah, { PlatformType, PropsWithInfo } from "@kayelaa/zeyah";
+import type { BufferResolvable } from "discord.js";
+import Zeyah, { type PlatformType, type PropsWithInfo } from "@kayelaa/zeyah";
 
 // types.ts
 

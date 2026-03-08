@@ -15,9 +15,9 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import { FilterKeysByValue, MutableEntriesLike } from "@zeyah-bot/types";
-import Decimal from "decimal.js";
-import mongoose, { QueryFilter } from "mongoose";
+import type { FilterKeysByValue, MutableEntriesLike } from "@zeyah-bot/types";
+import { Decimal } from "decimal.js";
+import mongoose, { type QueryFilter } from "mongoose";
 
 export type PropMap = Record<string, any>;
 
@@ -163,8 +163,6 @@ export class ZeyahDB<T extends PropMap = never> {
       { upsert: true },
     );
   }
-
-
 
   async replaceProps<K extends keyof T>(
     key: K,

@@ -15,9 +15,9 @@
  * If this file is not from the repository above, treat it as potentially unsafe.
  */
 
-import Zeyah, { Bold, PropsWithInfo } from "@kayelaa/zeyah";
+import Zeyah, { Bold, type PropsWithInfo } from "@kayelaa/zeyah";
 import { JoinNode } from "@zeyah-bot/components";
-import { Interact } from "@zeyah-bot/types";
+import { type Interact } from "@zeyah-bot/types";
 
 export namespace Menu {
   /**

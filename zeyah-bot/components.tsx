@@ -22,11 +22,11 @@ import Zeyah, {
   Code,
   Italic,
   Platform,
-  PropsWithInfo,
+  type PropsWithInfo,
   Repeated,
   Text,
   UniFont,
-  ZeyahChildren,
+  type ZeyahChildren,
   ZeyahFiber,
 } from "@kayelaa/zeyah";
 import {
@@ -188,15 +188,15 @@ export const EmbedFooter: Zeyah.FC<PropsWithInfo<{ iconURL?: string }>> = ({
 EmbedFooter.displayName = "EmbedFooter";
 
 import { EmbedBuilder } from "discord.js";
-import {
+import type {
   LanguageType,
   LanguageTypeWithFallback,
   SemVerLiteral,
   ZeyahMessageOrReply,
 } from "@zeyah-bot/types";
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 import { getConfig } from "@zeyah-bot/registry";
-import { inspect, InspectOptions } from "node:util";
+import { inspect, type InspectOptions } from "node:util";
 
 export const DiscordStateKey = "discordEmbeds";
 
@@ -815,20 +815,20 @@ export {
   Bold,
   Break,
   CassFormat,
-  CassProps,
+  type CassProps,
   Code,
   CodeBlock,
-  CodeBlockProps,
+  type CodeBlockProps,
   Indent,
   Italic,
   Heading,
-  HeadingProps,
+  type HeadingProps,
   Line,
   Link,
-  LinkProps,
+  type LinkProps,
   List,
   ListItem,
-  ListProps,
+  type ListProps,
   Platform,
   Quote,
   Repeated,

@@ -337,9 +337,9 @@ export const numMultipliers = {
   ctc: 1e309,
 } as const;
 
-import { FilterKeysByValue } from "@zeyah-bot/types";
-import axios, { AxiosRequestConfig } from "axios";
-import Decimal from "decimal.js";
+import { type FilterKeysByValue } from "@zeyah-bot/types";
+import axios, { type AxiosRequestConfig } from "axios";
+import { Decimal } from "decimal.js";
 import { randomBytes } from "node:crypto";
 import Stream from "node:stream";
 
@@ -979,14 +979,8 @@ export class PageSlicer<T> {
   }
 }
 
-export {
-  DLResult,
-  FBInfo,
-  downloadFacebookVideo,
-  facebookLinkRegex,
-  getFBInfo,
-} from "./unsafes";
-export * from "./inventory";
+export * from "./unsafes.js";
+export * from "./inventory.js";
 
 export type TypeMap = {
   string: string;

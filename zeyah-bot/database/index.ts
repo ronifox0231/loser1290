@@ -16,7 +16,7 @@
  */
 
 import { logger } from "@zeyah-utils/logger";
-import { KeyValueModelType, ZeyahDB, ZeyahModel } from "./zeyah-db";
+import { type KeyValueModelType, ZeyahDB, ZeyahModel } from "./zeyah-db.js";
 export const dbModel = new ZeyahModel("zeyah-db", {
   collection: "zeyah-users-db",
 });
@@ -124,10 +124,10 @@ export type UserDBPropsKeys<Value = any> = FilterKeysByValue<
 export type UsersDBProps = Record<string, UserDBProps>;
 import "dotenv/config";
 import mongoose from "mongoose";
-import { FilterKeysByValue, MutableEntriesLike } from "@zeyah-bot/types";
+import type { FilterKeysByValue, MutableEntriesLike } from "@zeyah-bot/types";
 import { AdapterInstanceRegistry } from "@zeyah-bot/registry";
 import { ZeyahAdapter } from "@zeyah-bot/adapters/base";
-import { Inventory, InventoryItem } from "@zeyah-utils/inventory";
+import { Inventory, type InventoryItem } from "@zeyah-utils/inventory";
 
 export async function connect() {
   logger.loader("Connecting to Mongo....");

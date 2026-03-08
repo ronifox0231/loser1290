@@ -20,9 +20,8 @@
 import chalk from "chalk";
 import { inspect } from "node:util";
 
-import { Theme, ThemeMap } from "@zeyah-utils/logger-themes";
+import { type Theme, ThemeMap } from "@zeyah-utils/logger-themes";
 import { getConfig } from "@zeyah-bot/registry";
-const con = getConfig();
 
 /**
  * **BotpackLogger** is a namespace from **@zeyah-bot/utils/botpack-logger** that provides methods for themed terminal logging.
@@ -34,6 +33,7 @@ export namespace BotpackLogger {
    * **getThemeColors()** returns the theme colors defined in the bot configuration.
    */
   export function getThemeColors(): Theme {
+    const con = getConfig();
     const theme = con.DESIGN.Theme;
     return ThemeMap[theme] ?? null;
   }

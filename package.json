@@ -1,13 +1,13 @@
 {
   "name": "zeyah-bot-system",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "private": true,
   "description": "",
   "license": "MIT",
   "author": "Kayelaa Cagara",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "start": "npm run check && tsx zeyah-bot/index",
+    "start": "npm run check && npm run start-nocheck",
     "start-nocheck": "tsx zeyah-bot/index",
     "check": "tsc --project tsconfig.commands.json",
     "update": "bash updater.sh"

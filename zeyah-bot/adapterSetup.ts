@@ -16,9 +16,9 @@
  */
 
 import { getConfig, register, registerAdapter } from "@zeyah-bot/registry";
-import fbState from "../fbstate.json";
+import fbState from "../fbstate.json" with { type: "json" };
 import { Ws3FBAdapter } from "@zeyah-bot/adapters/fbAdapter";
-import { LoginOptions } from "ws3-fca";
+import type { LoginOptions } from "ws3-fca";
 import { DiscordAdapter } from "@zeyah-bot/adapters/discordAdapter";
 import { logger } from "@zeyah-utils/logger";
 import { inspect } from "node:util";

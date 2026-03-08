@@ -58,12 +58,14 @@ import config from "@config";
 export { config };
 
 import {
-  BaseZeyahPluginConfig,
-  CMDRole,
-  CMDRoleName,
   isArgumentLiteral,
   isGHUserLiteral,
   isSemVerLiteral,
+  CMDRole,
+} from "@zeyah-bot/types";
+import type {
+  BaseZeyahPluginConfig,
+  CMDRoleName,
   PluginConfigOf,
   PluginNameOf,
   SemVerLiteral,
@@ -80,7 +82,10 @@ import { readdir } from "fs/promises";
 import path from "path";
 import { logger } from "@zeyah-utils/logger";
 import { pathToFileURL } from "url";
-import { AnyZeyahAdapterClass, ZeyahAdapter } from "@zeyah-bot/adapters/base";
+import {
+  type AnyZeyahAdapterClass,
+  ZeyahAdapter,
+} from "@zeyah-bot/adapters/base";
 
 export type CommandNameWithVersion = `${string}@${SemVerLiteral}`;
 
@@ -293,7 +298,7 @@ export function getConfig(): ZeyahConfig {
   return config;
 }
 import { Error } from "mongoose";
-import { API } from "ws3-fca";
+import type { API } from "ws3-fca";
 import { MiraiModule } from "@zeyah-bot/legacy/catch-mirai";
 import { Client } from "discord.js";
 import axios from "axios";

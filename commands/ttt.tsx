@@ -1,7 +1,7 @@
 import Zeyah, { Bold, Code, Text } from "@kayelaa/zeyah";
 import { Breaks, Choice, Random, Points } from "@zeyah-bot/components";
-import Decimal from "decimal.js";
-import { Cell, TictactoeAI } from "@commands/utils/ttt-ai";
+import { Decimal } from "decimal.js";
+import { type Cell, TictactoeAI } from "@commands/utils/ttt-ai";
 import { pickRandom, shuffle } from "@zeyah-utils";
 import { ZeyahIO } from "@zeyah-bot/domain/io";
 

@@ -1,7 +1,7 @@
 import { Bold, Italic, List, ListItem } from "@kayelaa/zeyah";
 import { Breaks, Choice, Divider, Points, Random } from "@zeyah-bot/components";
 import { parseBetDecimal } from "@zeyah-utils";
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 
 export const BalanceEvent = module.register({
   name: "points",

@@ -39,12 +39,11 @@ export const logger = BotpackLogger;
 
 import figlet from "figlet";
 
-import pkg from "@package";
+import pkg from "@package" with { type: "json" };
 import path from "node:path";
 import { readFileSync } from "node:fs";
 import BotpackLogger from "@zeyah-utils/botpack-logger";
 import { getConfig } from "@zeyah-bot/registry";
-const config = getConfig();
 
 const fontPath = path.join(process.cwd(), "zeyah-bot", "Pagga.flf");
 
@@ -57,6 +56,7 @@ figlet.parseFont("pagga", font);
  * *(Jsdoc fully written by jules with help of lianecagara)*
  */
 export function showFinalBanner() {
+  const config = getConfig();
   const logo = figlet.textSync(config.DESIGN.Title ?? "ZeyahBot", {
     font: "pagga",
     horizontalLayout: "default",

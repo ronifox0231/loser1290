@@ -16,9 +16,13 @@
  */
 
 // from ntkhang03/Goat-Bot-V2
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosError,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+} from "axios";
 import Stream from "node:stream";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 /**
  * **getStreamFromUrl()** fetches a file from a URL as a readable stream.
  *
