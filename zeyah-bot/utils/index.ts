@@ -1195,12 +1195,3 @@ export function typeMustBeOptional(
 
   typeMustBe(value, ...descriptors);
 }
-
-export namespace DateNow {
-  export function ms(): number {
-    return Temporal.Now.instant().epochMilliseconds;
-  }
-  export function ns(): bigint {
-    return Temporal.Now.instant().epochNanoseconds;
-  }
-}
