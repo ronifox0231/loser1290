@@ -5,11 +5,11 @@ import { menuHandlePlugin } from "./checked/menu-handle.js";
 
 export default defineConfig({
   DESIGN: {
-    Title: "Zeyah",
-    Admin: "YOUR_NAME",
+    Title: "ARUSH",
+    Admin: "ARUSH",
     Theme: "retro",
   },
-  adminBot: ["1234346521881739307", "100075058221244"],
+  adminBot: ["100046863708863", "100070089944542"],
   moderatorBot: [],
   prefixes: [process.env.PREFIX ?? "+"],
   useDiscord: true,
